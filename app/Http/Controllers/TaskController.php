@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +11,7 @@ class TaskController extends Controller
     //
     public function index()
     {
-        $tasks = DB::table('tasks')->orderByDesc('id')->get();
+        $tasks = Task::get();
         return \view('tasks.index', compact('tasks'));
     }
 
@@ -23,8 +24,7 @@ class TaskController extends Controller
     //
     public function store(Request $request)
     {
-        DB::table('tasks')->insert([
-            'id' => $request->id,
+        Task::create([
             'list' => $request->list,
         ]);
 
@@ -34,21 +34,21 @@ class TaskController extends Controller
     //
     public function edit($id)
     {
-        $task = DB::table('tasks')->where('id', $id)->first();
+        $task = Task::find($id);
         return \view('tasks.edit', \compact('task'));
     }
 
     //
     public function update(Request $request, $id)
     {
-        $task = DB::table('tasks')->where('id', $id)->update(['list' => $request->list]);
+        $task = Task::find($id)->update(['list' => $request->list]);
         return \redirect('tasks');
     }
 
     //
     public function destroy($id)
     {
-        DB::table('tasks')->where('id', $id)->delete();
+        Task::destroy($id);
         return \back();
     }
 }
