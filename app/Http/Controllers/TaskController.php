@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -41,7 +40,7 @@ class TaskController extends Controller
     //
     public function update(Request $request, $id)
     {
-        $task = Task::find($id)->update(['list' => $request->list]);
+        Task::find($id)->update(['list' => $request->list]);
         return \redirect('tasks');
     }
 
