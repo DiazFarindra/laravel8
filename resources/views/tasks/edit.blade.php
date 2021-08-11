@@ -4,7 +4,7 @@
         <a href="/tasks/create">create</a>
     </div>
 
-    <form action="/tasks/{{ $task->id }}" method="post">
+    <form action="{{ route('tasks.update', $task->id) }}}}" method="post">
         @method('patch')
         @csrf
         <input type="text" name="list" value="{{ $task->list }}">

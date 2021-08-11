@@ -24,7 +24,7 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         Task::create([
-            'list' => $request->list,
+            'list' => $request['list'],
         ]);
 
         return \back();
@@ -40,7 +40,7 @@ class TaskController extends Controller
     //
     public function update(Request $request, $id)
     {
-        Task::find($id)->update(['list' => $request->list]);
+        Task::find($id)->update(['list' => $request['list']]);
         return \redirect('tasks');
     }
 
