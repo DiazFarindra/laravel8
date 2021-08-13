@@ -7,7 +7,8 @@ use App\Http\Controllers\{
     AboutController,
     HomeController,
     ProfileController,
-    TaskController
+    TaskController,
+    UserController
 };
 
 /*
@@ -37,3 +38,6 @@ Route::resource('tasks', TaskController::class);
 Route::get('/about', [AboutController::class, 'create']);
 Route::post('/about', [AboutController::class, 'store']);
 
+
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{user:username}', [UserController::class, 'show'])->name('users.show');
