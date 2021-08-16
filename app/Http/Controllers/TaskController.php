@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,10 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::get();
-        return \view('tasks.index', compact('tasks'));
+        return \view('tasks.index', [
+            'tasks' => $tasks,
+            'task' => new Task,
+        ]);
     }
 
     //
@@ -21,16 +25,9 @@ class TaskController extends Controller
     }
 
     //
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
-        $request->validate([
-            'list' => 'required',
-        ]);
-
-        Task::create([
-            'list' => $request->list,
-        ]);
-
+        Task::create($request->all());
         return \back();
     }
 
@@ -41,7 +38,7 @@ class TaskController extends Controller
     }
 
     //
-    public function update(Request $request, $id)
+    public function update(TaskRequest $request, $id)
     {
         Task::find($id)->update(['list' => $request['list']]);
         return \redirect('tasks');

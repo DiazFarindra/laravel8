@@ -2,7 +2,7 @@
 
     <div class="mb-4 row">
         <div class="col-md-12">
-            @include('tasks._create')
+            @include('tasks._form', ['submit' => 'create'])
         </div>
     </div>
 
