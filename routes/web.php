@@ -7,6 +7,7 @@ use App\Http\Controllers\{
     AboutController,
     HomeController,
     ProfileController,
+    RegistrationController,
     TaskController,
     UserController
 };
@@ -41,3 +42,7 @@ Route::post('/about', [AboutController::class, 'store']);
 
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{user:username}', [UserController::class, 'show'])->name('users.show');
+
+
+Route::get('register', [RegistrationController::class, 'create'])->name('register');
+Route::post('register', [RegistrationController::class, 'store'])->name('register');
