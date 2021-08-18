@@ -16,6 +16,9 @@
             <ul class="mb-2 navbar-nav mb-lg-0">
                 <ul class="mb-2 navbar-nav me-auto mb-lg-0">
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('login') }}</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('register') }}">{{ __('register') }}</a>
                     </li>
                 </ul>

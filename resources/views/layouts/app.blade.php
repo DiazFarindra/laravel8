@@ -16,6 +16,8 @@
     <x-navbar></x-navbar>
 
     <div class="container mt-4">
+        <x-alert></x-alert>
+
         {{ $slot }}
     </div>
 

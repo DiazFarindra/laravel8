@@ -1,11 +1,5 @@
 <x-app-layout title="tasks">
 
-    @if (session()->has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ session()->get('success') }}
-        </div>
-    @endif
-
     <div class="mb-4 row">
         <div class="col-md-12">
             @include('tasks._form', ['submit' => 'create'])
