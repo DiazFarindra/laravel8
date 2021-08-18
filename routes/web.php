@@ -7,6 +7,7 @@ use App\Http\Controllers\{
     AboutController,
     HomeController,
     LoginController,
+    LogoutController,
     ProfileController,
     RegistrationController,
     TaskController,
@@ -34,9 +35,6 @@ Route::get('/blog', [HomeController::class, 'blog']);
 Route::get('/profile/{indentify}', ProfileController::class);
 
 
-Route::resource('tasks', TaskController::class);
-
-
 Route::get('/about', [AboutController::class, 'create']);
 Route::post('/about', [AboutController::class, 'store']);
 
@@ -45,9 +43,22 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{user:username}', [UserController::class, 'show'])->name('users.show');
 
 
-Route::get('register', [RegistrationController::class, 'create'])->name('register');
-Route::post('register', [RegistrationController::class, 'store'])->name('register');
+Route::middleware(['auth'])->group(function () {
+
+    Route::resource('tasks', TaskController::class);
+
+    Route::post('logout', LogoutController::class)->name('logout');
+
+});
 
 
-Route::get('login', [LoginController::class, 'create'])->name('login');
-Route::post('login', [LoginController::class, 'store'])->name('login');
+Route::middleware(['guest'])->group(function () {
+
+    Route::get('register', [RegistrationController::class, 'create'])->name('register');
+    Route::post('register', [RegistrationController::class, 'store'])->name('register');
+
+
+    Route::get('login', [LoginController::class, 'create'])->name('login');
+    Route::post('login', [LoginController::class, 'store'])->name('login');
+
+});

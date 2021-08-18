@@ -25,9 +25,10 @@ class Navbar extends Component
     {
         $navigations = [
             'home' => '/',
-            'profile' => '/profile/diaz',
             'blog' => '/blog',
             'about' => '/about',
+            'profile' => '/profile/diaz',
+            'users' => '/users',
             'Tasks' => '/tasks',
         ];
 
