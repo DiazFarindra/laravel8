@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class Navbar extends Component
@@ -27,7 +28,7 @@ class Navbar extends Component
             'home' => '/',
             'blog' => '/blog',
             'about' => '/about',
-            'profile' => '/profile/diaz',
+            'profile' => '/profile/'.Auth::user()->username,
             'users' => '/users',
             'Tasks' => '/tasks',
         ];

@@ -32,20 +32,18 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/blog', [HomeController::class, 'blog']);
 
 
-Route::get('/profile/{indentify}', ProfileController::class);
-
-
 Route::get('/about', [AboutController::class, 'create']);
 Route::post('/about', [AboutController::class, 'store']);
-
-
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/{user:username}', [UserController::class, 'show'])->name('users.show');
 
 
 Route::middleware(['auth'])->group(function () {
 
     Route::resource('tasks', TaskController::class);
+
+    Route::get('/profile/{indentify}', ProfileController::class);
+
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users/{user:username}', [UserController::class, 'show'])->name('users.show');
 
     Route::post('logout', LogoutController::class)->name('logout');
 
